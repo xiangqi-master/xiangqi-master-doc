@@ -1,0 +1,22 @@
+{
+  "name": "xiangqi-master-doc",
+  "version": "1.0.0",
+  "description": "Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including",
+  "main": "index.js",
+  "scripts": {
+    "dev": "mintlify dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiangqi-master/xiangqi-master-doc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiangqi-master/xiangqi-master-doc/issues"
+  },
+  "homepage": "https://github.com/xiangqi-master/xiangqi-master-doc#readme",
+  "dependencies": {
+    "mintlify": "^4.0.282"
+  }
+}
