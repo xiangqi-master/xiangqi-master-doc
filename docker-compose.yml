@@ -1,0 +1,15 @@
+version: '3.0'
+
+services:
+  doc:
+    build: .
+    container_name: xiangqi-master-doc
+    env_file:
+      - .env
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - "${PORT}:3000"
+    stdin_open: true
+    tty: true
