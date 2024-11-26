@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Xiangqi Master Documentation",
+  "name": "Xiangqi Master",
   "logo": {
     "dark": "/logo/logo_light.png",
     "light": "/logo/logo_dark.png"
