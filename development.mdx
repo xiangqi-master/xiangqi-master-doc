@@ -1,106 +1,167 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: Development
+description: 'Developer Guide of Xiangqi Master.'
 ---
 
-<Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding.
-</Info>
+## Glossary
+Note the following terms that we use for this project:
+|English|Chinese (Red/Black)|Code (Red)|Code (Black)
+|---|---|---|---|
+|Advisor|仕/士|0|10|
+|Elephant|相/象|1|11|
+|General|帥/將|2|12|
+|Horse|馬/傌|3|13|
+|Rook|車/俥|4|14|
+|Cannon|炮/砲|5|15|
+|Pawn|兵/卒|6|16|
 
-Follow these steps to install and run Mintlify on your operating system:
+1. **Increment (加时)**: The number of seconds added to the player's total time after each move.
+2. **River (楚河汉界)**: Dividing the two opposing sides, between the fifth and sixth ranks, is the river.
+3. **Check (将军)**: A scenario where the general is in danger of being captured by the enemy player.
+4. **Checkmate (将死)**: A situation where the general's player can make no move to prevent the general's capture.
+5. **Stalemate (欠行)**: A situation where the player whose turn it is to move is not in check and has no legal move.
 
-**Step 1**: Install Mintlify:
+## Git Convention
+### Git Branch Convention
+Each functional repository contains two branches `main` and `develop`. The `develop` branch will be merged into `main` branch periodically. Each developer should create a new branch for 
+their code changes, and create a pull request to merge into the `develop` branch.
+<Warning>Do not **push** your changes directly to `master` or `develop` branch!</Warning>
 
-<CodeGroup>
+### Git Commit Format
+The team follows [Angular Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0-beta.4/#summary) to write commit messages. The commit message is structured as follows:
+```text
+<type>[optional scope]: <description>
 
-  ```bash npm
-  npm i -g mintlify
-  ```
+[optional body]
 
-```bash yarn
-yarn global add mintlify
+[optional footer]
 ```
 
-</CodeGroup>
+Below is a **quick summary** of different commit types to use:
+1. **feat**: A new feature.
+2. **fix**: A bug fix.
+3. **build**: Changes that affect the build system or external dependencies.
+4. **ci**: Changes to our CI configuration files and scripts.
+5. **refactor**: A code change to improve the readability.
+6. **pref**: A code change to improve the performance.
+7. **test**: Adding or updating test scripts.
+8. **docs**: Documentation changes.
 
-**Step 2**: Navigate to the docs directory (where the `mint.json` file is located) and execute the following command:
-
-```bash
-mintlify dev
+#### Examples
+Commit that adds a new feature.
+```text
+feat: add logic of chess board
 ```
 
-A local preview of your documentation will be available at `http://localhost:3000`.
-
-### Custom Ports
-
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
-
-```bash
-mintlify dev --port 3333
+Commit that fixes a bug.
+```text
+fix: resolve the issue of chess board for not being rendered correctly
 ```
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
-
-```md
-Port 3000 is already in use. Trying 3001 instead.
+## Chess Board Logic
+### Class Diagram
+```mermaid
+classDiagram
+    class PieceType {
+        <<enumeration>>
+        ADVISOR,
+        ELEPHANT,
+        GENERAL,
+        HORSE,
+        ROOK,
+        CANNON,
+        PAWN
+    }
+    
+    class Board {
+        +List~Piece~ board
+        
+        +Board(List~Piece~ board)
+        +move(Position startPosition, Position endPosition) void
+        +toString() String
+    }
+    
+    class Position {
+        +int x
+        +int y
+        
+        +Position(int x, int y)
+    }
+    
+    class Piece {
+        <<abstract>>
+        +int code
+        +Position position
+        
+        +Piece(int code, Position startingPosition)
+        +isValidMove(Board board, Position targetPosition) bool
+        +getAllValidMoves(Board board) List~Position~*
+        +move(Position targetPosition) void
+        #isRed() bool
+        +toString() String
+    }
+    
+    class General {
+        
+        +General(int code, Position startingPosition)
+        +getAllValidMoves(Board board) List~Position~*
+    }
+    
+    class Advisor {
+        
+        +Advisor(int code, Position startingPosition)
+        +getAllValidMoves(Board board) List~Position~*
+    }
+    
+    class Elephant {
+        
+        +Elephant(int code, Position startingPosition)
+        +getAllValidMoves(Board board) List~Position~*
+    }
+    
+    class Horse {
+        
+        +Horse(int code, Position startingPosition)
+        +getAllValidMoves(Board board) List~Position~*
+    }
+    
+    class Rook {
+        
+        +Rook(int code, Position startingPosition)
+        +getAllValidMoves(Board board) List~Position~*
+    }
+    
+    class Cannon {
+    
+        +Cannon(int code, Position startingPosition)
+        +getAllValidMoves(Board board) List~Position~*
+    }
+    
+    class Pawn {     
+       
+        +Pawn(int code, Position startingPosition)
+        +getAllValidMoves(Board board) List~Position~*
+    }
+    
+    class PieceFactory {
+        
+        +createPiece(PieceType type, bool isRed, Position position) Piece$
+    }
+    
+    Piece <|-- General
+    Piece <|-- Advisor
+    Piece <|-- Elephant
+    Piece <|-- Horse
+    Piece <|-- Rook
+    Piece <|-- Cannon
+    Piece <|-- Pawn
+    
+    Piece ..|> Board 
+    
+    PieceFactory ..|> Position
+    PieceFactory ..|> PieceType
+    
+    Piece "1" --> "1" Position : position
+    PieceFactory --> Piece : creates
+    
 ```
-
-## Mintlify Versions
-
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
-
-<CodeGroup>
-
-```bash npm
-npm i -g mintlify@latest
-```
-
-```bash yarn
-yarn global upgrade mintlify
-```
-
-</CodeGroup>
-
-## Validating Links
-
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
-
-```bash
-mintlify broken-links
-```
-
-## Deployment
-
-<Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
-</Tip>
-
-If the deployment is successful, you should see the following:
-
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-## Code Formatting
-
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
-
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
-  </Accordion>
-
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
