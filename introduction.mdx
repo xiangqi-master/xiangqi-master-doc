@@ -1,71 +1,37 @@
 ---
 title: Introduction
-description: 'Welcome to the home of your new documentation'
+description: 'Xiangqi Master is an online platform to challenge opponents from around the world in real-time. Our intuitive interface makes it easy to start a game, track your progress, and connect with friends or new players anytime, anywhere.'
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
-  alt="Hero Dark"
-/>
+## Features
+The website supports a total of **3 modes**. You can choose your desired mode such as [play with computers](#play-with-computers), [find a match](#find-a-match), [play with friends](#play-with-friends).
 
-## Setting up
+### Play with friends
+You can create a room and send the link to your friends so that they can join the match by:
+1. Select **Play with friends** mode.
+2. Set up **Total time** and **Increment**.
+3. Create the room.
+4. Copy the link and share it to your friend.
 
-The first step to world-class documentation is setting up your editing environments.
+### Find a match
+You can have a match with other online players by:
+1. Select **Find a match** mode.
+2. Select the **Total time** you want for this match.
+3. The game starts immediately once a match is found.
 
-<CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+### Play with computers
+You can have a match with computers up to **3 different levels** (Easy, Medium, Hard) by:
+1. Select **Play with computers** mode.
+2. Select **Difficulty Level**.
+3. Start the match.
 
-## Make it yours
 
-Update your docs to your brand and add valuable content for the best user conversion.
+## During a match
+During a match, players take turn to make a move. A player is **lost** if one of the following three scenarios happens:
+1. The player **resigns**.
+2. The player **runs out of time**.
+3. The general's player **can make no move to prevent the general's capture (checkmate)**.
 
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+The match is a **draw** if one of the following two scenarios happens:
+1. A player asks for a draw and the other opponent agrees.
+2. Both sides have no pieces to cross the river.
