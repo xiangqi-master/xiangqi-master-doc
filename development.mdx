@@ -78,14 +78,19 @@ classDiagram
         
         +Board(List~Piece~ board)
         +move(Position startPosition, Position endPosition) void
+        +getPieceByPosition(Position position): Piece
         +toString() String
     }
     
     class Position {
-        +int x
-        +int y
+        -int x
+        -int y
         
         +Position(int x, int y)
+        +setPosition(Position position): void
+        +getPosition(): Integer[2]
+        +isWithinBoundary(): bool
+        +equals(Position position): bool
     }
     
     class Piece {
@@ -97,7 +102,7 @@ classDiagram
         +isValidMove(Board board, Position targetPosition) bool
         +getAllValidMoves(Board board) List~Position~*
         +move(Position targetPosition) void
-        #isRed() bool
+        +isRed() bool
         +toString() String
     }
     
