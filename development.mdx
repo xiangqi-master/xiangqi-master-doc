@@ -78,7 +78,8 @@ classDiagram
         
         +Board(List~Piece~ board)
         +move(Position startPosition, Position endPosition) void
-        +getPieceByPosition(Position position): Piece
+        +getPieceByPosition(Position position) Piece
+        +equals(Board board) bool
         +toString() String
     }
     
@@ -87,10 +88,11 @@ classDiagram
         -int y
         
         +Position(int x, int y)
-        +setPosition(Position position): void
-        +getPosition(): Integer[2]
-        +isWithinBoundary(): bool
-        +equals(Position position): bool
+        +setPosition(Position position) void
+        +getPosition() Integer[2]
+        +isWithinBoundary() bool
+        +isCrossRiver() bool
+        +equals(Position position) bool
     }
     
     class Piece {
@@ -98,11 +100,12 @@ classDiagram
         +int code
         +Position position
         
-        +Piece(int code, Position startingPosition)
+        #Piece(int code, Position startingPosition)
         +isValidMove(Board board, Position targetPosition) bool
         +getAllValidMoves(Board board) List~Position~*
         +move(Position targetPosition) void
         +isRed() bool
+        +equals(Piece piece) bool
         +toString() String
     }
     
