@@ -4,22 +4,28 @@ description: 'Start building our xiangqi master in under 5 minutes'
 ---
 
 ## Frontend
-1. Install dependencies.
+<Warning>This requires a node version of a least **18.x.x**. Please run `node --version` to check your node version.</Warning>
+1. Clone from Git.
 ```shell
-npm install 
+git clone https://github.com/xiangqi-master/xiangqi-master-frontend.git 
 ```
 
-2. Create `.env` file from `.env.template`. Fill in variables in `.env`.
+2. Install dependencies.
+```shell
+npm install --legacy-peer-deps
+```
+
+3. Create `.env` file from `.env.template`. Fill in variables in `.env`.
 ```shell
 copy .env.template .env
 ```
 
-3. Start the project in development node.
+4. Start the project in development node.
 ```shell
 npm run dev 
 ```
 
-4. Open the link with the port number you specify. e.g. http://localhost:3000
+5. Open the link with the port number you specify. e.g. http://localhost:3000
 
 
 ## Backend
@@ -29,35 +35,51 @@ npm run dev
 
 ### Set up with local node
 <Warning>This requires a node version of a least **18.x.x**. Please run `node --version` to check your node version. For node version < **18.x.x**, you may opt to [set up with docker](#set-up-with-docker).</Warning>
-1. Install dependencies.
+
+1. Clone from Git.
+```shell
+git clone https://github.com/xiangqi-master/xiangqi-master-doc.git
+```
+
+2. Install dependencies.
 ```shell
 npm install 
 ```
 
-2. Create `.env` file from `.env.template`. Fill in variables in `.env`.
+3. Create `.env` file from `.env.template`. Fill in variables in `.env`.
 ```shell
 copy .env.template .env
 ```
 
-3. Start the project in development mode.
+4. Start the project in development mode.
 ```shell
 npm run dev
 ```
 
-4. Open the link with the port number you specify. e.g. http://localhost:3000
+5. Open the link with the port number you specify. e.g. http://localhost:3000
 
 
 ### Set up with docker
-1. Create `.env` file from `.env.template`. Fill in variables in `.env`.
+1. Clone from Git.
+```shell
+git clone https://github.com/xiangqi-master/xiangqi-master-doc.git
+```
+
+2. Install dependencies.
+```shell
+npm install 
+```
+
+3. Create `.env` file from `.env.template`. Fill in variables in `.env`.
 ```shell
 copy .env.template .env
 ```
 
-2. Build docker container.
+4. Build docker container.
 
 <Warning>You may use `docker-compose` rather than `docker compose` if you are still using **Compose V1**. You may read [Migrate to Compose V2](https://docs.docker.com/compose/releases/migrate/) for more details.</Warning>
 ```shell
 docker compose up
 ```
 
-3. Open the link with the port number you specify. e.g. http://localhost:3000
+5. Open the link with the port number you specify. e.g. http://localhost:3000
