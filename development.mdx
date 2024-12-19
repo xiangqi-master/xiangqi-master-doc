@@ -58,21 +58,10 @@ Commit that fixes a bug.
 fix: resolve the issue of chess board for not being rendered correctly
 ```
 
-## Chess Board Logic
-### Class Diagram
+## Checkerboard Logic
+### Class Diagram of Checkerboard
 ```mermaid
 classDiagram
-    class PieceType {
-        <<enumeration>>
-        ADVISOR,
-        ELEPHANT,
-        GENERAL,
-        HORSE,
-        ROOK,
-        CANNON,
-        PAWN
-    }
-    
     class Board {
         +List~Piece~ board
         
@@ -151,11 +140,6 @@ classDiagram
         +getAllValidMoves(Board board) List~Position~*
     }
     
-    class PieceFactory {
-        
-        +createPiece(PieceType type, bool isRed, Position position) Piece$
-    }
-    
     Piece <|-- General
     Piece <|-- Advisor
     Piece <|-- Elephant
@@ -164,17 +148,94 @@ classDiagram
     Piece <|-- Cannon
     Piece <|-- Pawn
     
-    Piece ..|> Board 
-    
-    PieceFactory ..|> Position
-    PieceFactory ..|> PieceType
+    Piece ..|> Board
     
     Piece "1" --> "1" Position : position
-    PieceFactory --> Piece : creates
+
+```
+
+### Class Diagram of Factory Pattern
+```mermaid
+classDiagram
+    class PieceFactory {
+        <<abstract>>
+        #int code
+        #PieceFactory(int code)
+        +createPiece(bool isRed, Position position) Piece*
+        #convertPieceCode(bool isRed)
+    }
+
+    class AdvisorFactory {
+        #int code = 0
+
+        +createPiece(bool isRed, Position position) Advisor
+    }
+
+    class ElephantFactory {
+        #int code = 1
+
+        +createPiece(bool isRed, Position position) Elephant
+    }
+
+    class GeneralFactory {
+        #int code = 2
+
+        +createPiece(bool isRed, Position position) General
+    }
+
+    class HorseFactory {
+        #int code = 3
+        
+        +createPiece(bool isRed, Position position) Horse
+    }
+
+    class RookFactory {
+        #int code = 4
+        
+        +createPiece(bool isRed, Position position) Rook
+    }
+
+    class CannonFactory {
+        #int code = 5
+        
+        +createPiece(bool isRed, Position position) Cannon
+    }
+
+
+    class PawnFactory {
+        #int code = 6
+        +createPiece(bool isRed, Position position) Pawn
+    }
     
+    class Position
+    class Advisor
+    class Elephant
+    class General
+    class Horse
+    class Rook
+    class Cannon
+    class Pawn
+
+    PieceFactory <|-- AdvisorFactory
+    PieceFactory <|-- ElephantFactory
+    PieceFactory <|-- GeneralFactory
+    PieceFactory <|-- HorseFactory
+    PieceFactory <|-- RookFactory
+    PieceFactory <|-- CannonFactory
+    PieceFactory <|-- PawnFactory
+
+    PieceFactory ..|> Position
+
+    AdvisorFactory --> Advisor : creates
+    ElephantFactory --> Elephant : creates
+    GeneralFactory --> General : creates
+    HorseFactory --> Horse : creates
+    RookFactory --> Rook : creates
+    CannonFactory --> Cannon : creates
+    PawnFactory --> Pawn : creates
 ```
 
 ### Checkerboard
 Below is a demonstration of `Position` class corresponding to the checker board with the horizontal axis being **x** and the vertical axis being **y**.
 
-<img height="500" width="500" src="https://res.cloudinary.com/dkywsdbkk/image/upload/f_auto,q_auto/v1/xiangqi-master/lgtrwvhnl3jqw7mlcuba" />
+<img height="400" width="400" src="https://res.cloudinary.com/dkywsdbkk/image/upload/f_auto,q_auto/v1/xiangqi-master/lgtrwvhnl3jqw7mlcuba" />
