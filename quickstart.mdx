@@ -15,17 +15,28 @@ git clone https://github.com/xiangqi-master/xiangqi-master-frontend.git
 npm install --legacy-peer-deps
 ```
 
-3. Create `.env` file from `.env.template`. Fill in variables in `.env`.
+3. Set up husky.
+```shell
+npm run prepare 
+```
+
+4. Set up husky git hooks.
+```shell
+npm run prepare-husky-scripts 
+```
+**Note**: You should be able to see a `.husky` folder with two git hook scripts - `.husky/pre-commit` and `.husky/pre-push`. 
+
+5. Create `.env` file from `.env.template`. Fill in variables in `.env`.
 ```shell
 copy .env.template .env
 ```
 
-4. Start the project in development node.
+6. Start the project in development node.
 ```shell
 npm run dev 
 ```
 
-5. Open the link with the port number you specify. e.g. http://localhost:3000
+7. Open the link with the port number you specify. e.g. http://localhost:3000
 
 
 ## Backend
