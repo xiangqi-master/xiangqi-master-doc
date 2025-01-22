@@ -20,6 +20,7 @@ Note the following terms that we use for this project:
 3. **Check (将军)**: A scenario where the general is in danger of being captured by the enemy player.
 4. **Checkmate (将死)**: A situation where the general's player can make no move to prevent the general's capture.
 5. **Stalemate (欠行)**: A situation where the player whose turn it is to move is not in check and has no legal move.
+6. **Checkerboard (棋盘)**: The chess board.
 
 ## Git Convention
 ### Git Branch Convention
@@ -100,49 +101,56 @@ classDiagram
         +getPosition() Position
         +equals(Piece piece) bool
         +hashCode() int
-        +toString() String
+        +toString() String*
     }
     
     class General {
         
         +General(int code, Position startingPosition)
-        +getAllValidMoves(Board board) List~Position~*
+        +getAllValidMoves(Board board) List~Position~
+        +toString() String
     }
     
     class Advisor {
         
         +Advisor(int code, Position startingPosition)
-        +getAllValidMoves(Board board) List~Position~*
+        +getAllValidMoves(Board board) List~Position~
+        +toString() String
     }
     
     class Elephant {
         
         +Elephant(int code, Position startingPosition)
-        +getAllValidMoves(Board board) List~Position~*
+        +getAllValidMoves(Board board) List~Position~
+        +toString() String
     }
     
     class Horse {
         
         +Horse(int code, Position startingPosition)
-        +getAllValidMoves(Board board) List~Position~*
+        +getAllValidMoves(Board board) List~Position~
+        +toString() String
     }
     
     class Rook {
         
         +Rook(int code, Position startingPosition)
-        +getAllValidMoves(Board board) List~Position~*
+        +getAllValidMoves(Board board) List~Position~
+        +toString() String
     }
     
     class Cannon {
     
         +Cannon(int code, Position startingPosition)
-        +getAllValidMoves(Board board) List~Position~*
+        +getAllValidMoves(Board board) List~Position~
+        +toString() String
     }
     
     class Pawn {     
        
         +Pawn(int code, Position startingPosition)
-        +getAllValidMoves(Board board) List~Position~*
+        +getAllValidMoves(Board board) List~Position~
+        +toString() String
     }
     
     Piece <|-- General
