@@ -16,27 +16,37 @@ npm install
 ```
 
 3. Set up husky.
+- **For Mac/Linux Users**
+  * Run the following command:
+    ```shell
+    ./scripts/set_up_husky
+    ```
+- **For Windows Users**
+  * Run the following command:
+    ```shell
+    npx run prepare
+    ```
+  * Create two files `pre-commit` and `pre-push` under `.husky`.
+  * Add the following line into `pre-commit`:
+    ```text
+    npx lint-staged
+    ```
+  * Add the following lines into `pre-push`:
+    ```text
+    npx lint-staged
+    npm test
+    ```
+4. Create `.env` file from `.env.template`. Fill in variables in `.env`.
 ```shell
-npm run prepare 
+cp .env.template .env
 ```
 
-4. Set up husky git hooks.
-```shell
-npm run prepare-husky-scripts 
-```
-**Note**: You should be able to see a `.husky` folder with two git hook scripts - `.husky/pre-commit` and `.husky/pre-push`. 
-
-5. Create `.env` file from `.env.template`. Fill in variables in `.env`.
-```shell
-copy .env.template .env
-```
-
-6. Start the project in development node.
+5. Start the project in development node.
 ```shell
 npm run dev 
 ```
 
-7. Open the link with the port number you specify. e.g. http://localhost:3000
+6. Open the link with the port number you specify. e.g. http://localhost:3000
 
 
 ## Backend
@@ -59,7 +69,7 @@ npm install
 
 3. Create `.env` file from `.env.template`. Fill in variables in `.env`.
 ```shell
-copy .env.template .env
+cp .env.template .env
 ```
 
 4. Start the project in development mode.
